@@ -1,4 +1,4 @@
-# ARCHIVE // LIAM — prototype jouable
+# ARCHIVE // LIAM - prototype jouable
 
 Projet transmédia de sensibilisation à l'isolement et au mal-être étudiant.
 Liam, 19 ans, orphelin, étudiant à la HEAJ, vit une relation à distance avec
