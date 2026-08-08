@@ -1,7 +1,7 @@
 @use 'base' as *;
 
 /* ------------------------------------------------------------------ */
-/* Commandes tactiles — visibles seulement sur écran tactile           */
+/* Commandes tactiles- visibles seulement sur écran tactile           */
 /* ------------------------------------------------------------------ */
 
 .tactile { display: none; }
@@ -147,7 +147,7 @@
 }
 
 /* ------------------------------------------------------------------ */
-/* Bouton plein écran — sur mobile la barre d'adresse mange l'écran    */
+/* Bouton plein écran- sur mobile la barre d'adresse mange l'écran    */
 /* ------------------------------------------------------------------ */
 
 .plein-ecran { display: none; }

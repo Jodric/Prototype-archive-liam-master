@@ -49,7 +49,7 @@ button {
  * Le cadre 16:9 : tout le jeu vit a l'interieur.
  *
  * Ses dimensions sont FIXES (1280x720) et c'est une transformation qui l'adapte
- * a la fenetre — voir `useEchelle`. Toute l'interface peut donc etre composee
+ * a la fenetre- voir `useEchelle`. Toute l'interface peut donc etre composee
  * en pixels absolus sans jamais deborder, du telephone en paysage au
  * videoprojecteur.
  */

@@ -2,7 +2,7 @@
  * Ecran affiche quand un telephone est tenu en portrait.
  *
  * Le prototype est composé en 16:9. Plutôt que de le tasser dans une bande
- * illisible, on demande la rotation — c'est le point d'entrée réel du projet
+ * illisible, on demande la rotation- c'est le point d'entrée réel du projet
  * (un QR-code scanné au téléphone), donc ce premier écran fait partie de
  * l'expérience et doit être aux couleurs du reste.
  *

@@ -4,7 +4,7 @@ import { sfx } from '../audio/sfx'
 /**
  * Bascule plein ecran, proposee uniquement sur ecran tactile.
  *
- * Sur telephone en paysage, la barre d'adresse mange une bande de hauteur — et
+ * Sur telephone en paysage, la barre d'adresse mange une bande de hauteur- et
  * comme le cadre est mis a l'echelle sur la plus petite dimension, c'est tout
  * le jeu qui rapetisse. Le plein ecran change beaucoup l'experience.
  */

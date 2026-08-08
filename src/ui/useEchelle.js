@@ -10,7 +10,7 @@ export const HAUTEUR_REF = 720
  * Toute l'interface est composee en pixels absolus pour un cadre 1280x720 :
  * la boite de dialogue, les jauges, la police pixel. Plutot que de rendre
  * chaque valeur responsive, on garde la composition intacte et on redimensionne
- * l'ensemble — c'est la methode classique en jeu video, et elle garantit que
+ * l'ensemble- c'est la methode classique en jeu video, et elle garantit que
  * les proportions restent celles qui ont ete validees, du telephone en paysage
  * au videoprojecteur du jury.
  */

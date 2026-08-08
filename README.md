@@ -5,7 +5,7 @@ Liam, 19 ans, orphelin, étudiant à la HEAJ, vit une relation à distance avec
 Clara sur Discord. Elle lui demande de venir en France. Le joueur traverse une
 nuit de sa vie et décide de ce qu'il en fait.
 
-Travail de fin d'études — Master Architecture Transmédia, Haute École Albert
+Travail de fin d'études- Master Architecture Transmédia, Haute École Albert
 Jacquard (Namur). Hicham El Bahri · Jodrick Mounga Tchamo ·
 Jordan Ngangmo Mkuingang · Evan Depauw.
 
@@ -72,10 +72,10 @@ fichiers de `assets/` restés sur le serveur ne sont plus référencés : ils ne
 cassent rien, mais autant les supprimer de temps en temps.
 
 Le fichier `.htaccess` livré dans `dist/` ne sert que sur un hébergement
-Apache. Sur nginx il est simplement ignoré — on le garde pour que le prototype
+Apache. Sur nginx il est simplement ignoré- on le garde pour que le prototype
 reste déployable ailleurs sans reconfiguration.
 
-**Changer d'adresse** se fait sans toucher au code — la base est injectée au
+**Changer d'adresse** se fait sans toucher au code- la base est injectée au
 build :
 
 ```bash
@@ -119,7 +119,7 @@ partout, du téléphone au vidéoprojecteur, sans rendre chaque valeur responsiv
 Sur **écran tactile** (`@media (pointer: coarse)`) :
 
 - en **portrait**, le jeu est masqué au profit d'un écran « Tournez votre
-  téléphone » — le 16:9 n'est pas lisible dans ce format ;
+  téléphone »- le 16:9 n'est pas lisible dans ce format ;
 - en **paysage**, une croix directionnelle et un bouton `OK` apparaissent pour
   la phase de déplacement, seule partie qui exigeait un clavier. Ils sont
   dimensionnés pour rester au-dessus de 44 px réels **après** mise à l'échelle

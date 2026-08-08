@@ -96,7 +96,7 @@ kbd {
 
 /*
  * Utilitaires : afficher un libellé selon le mode d'entrée. On rend les deux
- * variantes et le CSS tranche, plutôt que de détecter le tactile en JS — un
+ * variantes et le CSS tranche, plutôt que de détecter le tactile en JS- un
  * appareil hybride (portable à écran tactile) peut changer en cours de route.
  * `revert` rend à l'élément son display naturel : bloc pour un <p>, en ligne
  * pour un <kbd>.
