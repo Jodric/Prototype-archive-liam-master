@@ -1,0 +1,35 @@
+# ARCHIVE // LIAM — configuration Apache du prototype.
+# Ce fichier est copié automatiquement dans dist/ au build : il doit être
+# uploadé avec le reste. Il est sans effet sur un serveur Nginx.
+
+# --- Compression -------------------------------------------------------
+# Le bundle fait ~1,6 Mo brut mais ~400 Ko compressé. Sur un téléphone qui
+# vient de scanner le QR-code, la différence est très nette.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+# --- Cache -------------------------------------------------------------
+# Les fichiers de assets/ ont un hash dans leur nom : ils peuvent être mis en
+# cache très longtemps. L'index, lui, doit toujours être revalidé, sinon une
+# mise à jour du prototype ne serait jamais vue par les visiteurs.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType image/png "access plus 30 days"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# --- Type MIME ---------------------------------------------------------
+# Certains hébergements mutualisés servent encore le JS en text/plain, ce qui
+# fait échouer les modules ES silencieusement.
+<IfModule mod_mime.c>
+  AddType text/javascript .js
+</IfModule>

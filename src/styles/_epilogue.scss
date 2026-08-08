@@ -1,0 +1,213 @@
+@use 'base' as *;
+
+.epilogue {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  padding: 20px 26px 26px;
+  background: $noir;
+
+  &::-webkit-scrollbar { width: 7px; }
+  &::-webkit-scrollbar-thumb { background: $gris; }
+}
+
+.epilogue__entete {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+  border-bottom: 2px solid $blanc;
+}
+
+.epilogue__marque { font-family: $pixel; font-size: 15px; letter-spacing: 2px; }
+.epilogue__sous { font-family: $mono; font-size: 11px; color: $gris; letter-spacing: 3px; }
+
+.epilogue__grille {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+/* -------- le message vocal -------- */
+
+.vocal-final {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  gap: 16px;
+  padding: 16px;
+  @include trait(2px, $blanc);
+}
+
+.vocal-final__portrait {
+  width: 100%;
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.7) 40%,
+    rgba(255, 255, 255, 0) 72%
+  );
+}
+
+.vocal-final__meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: $pixel;
+  font-size: 9px;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  span { color: $gris; }
+}
+
+.lecteur {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  background: $blanc;
+  color: $noir;
+  border: 0;
+  &:disabled { opacity: 0.9; }
+}
+
+.lecteur__bouton { font-size: 14px; }
+
+.lecteur__onde {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 44px;
+  flex: 1;
+
+  i {
+    flex: 1;
+    background: $noir;
+    transition: opacity 0.3s ease;
+  }
+}
+
+.vocal-final__transcript {
+  margin-top: 14px;
+  font-family: $main;
+  font-size: 23px;
+  line-height: 1.28;
+
+  p { margin: 0 0 10px; animation: fondu 0.5s ease-out; }
+}
+
+.vocal-final__invite { color: $gris; font-family: $mono; font-size: 12px; }
+
+/* -------- la recompense -------- */
+
+.recompense {
+  position: relative;
+  padding: 18px;
+  background: $blanc;
+  color: $noir;
+  @include trait(4px, $blanc);
+
+  h2 { margin: 0 0 8px; font-family: $pixel; font-size: 13px; }
+}
+
+.recompense--verrouillee > *:not(.recompense__voile) { filter: blur(5px); opacity: 0.5; }
+
+.recompense__voile {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  text-align: center;
+  font-family: $pixel;
+  font-size: 10px;
+  line-height: 1.8;
+  color: $blanc;
+  background: rgba(0, 0, 0, 0.82);
+}
+
+.recompense__intro { margin: 0 0 14px; font-family: $mono; font-size: 11px; line-height: 1.6; }
+
+.code {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 16px;
+  background: $noir;
+  color: $blanc;
+  border: 0;
+
+  span { font-family: $pixel; font-size: 14px; letter-spacing: 2px; }
+  em { font-family: $mono; font-size: 10px; font-style: normal; color: $gris; }
+  &:hover em { color: $blanc; }
+}
+
+.recompense__bilan { margin-top: 16px; }
+
+.bilan__ligne {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 0;
+  font-family: $mono;
+  font-size: 11px;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.28);
+
+  strong { font-family: $pixel; font-size: 9px; }
+}
+
+.recompense__note {
+  margin: 14px 0 0;
+  font-family: $main;
+  font-size: 19px;
+  line-height: 1.2;
+  color: #333;
+}
+
+/* -------- rappels -------- */
+
+.rappel {
+  margin-top: 18px;
+  padding: 14px 16px;
+  @include trait(2px, $gris);
+
+  h3 { margin: 0 0 10px; font-family: $pixel; font-size: 10px; letter-spacing: 1px; }
+  ul { margin: 0; padding: 0; list-style: none; }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 6px 0;
+    font-family: $main;
+    font-size: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  em { font-family: $pixel; font-size: 8px; font-style: normal; white-space: nowrap; }
+  .positif { color: $blanc; }
+  .negatif { color: $gris; }
+}
+
+/* -------- pied -------- */
+
+.epilogue__pied {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 2px solid $blanc;
+}
+
+.avertissement {
+  margin: 0;
+  flex: 1;
+  font-family: $mono;
+  font-size: 11px;
+  line-height: 1.7;
+  color: $gris-clair;
+  strong { color: $blanc; }
+}

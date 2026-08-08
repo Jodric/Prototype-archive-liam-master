@@ -1,0 +1,79 @@
+/* Charte ARCHIVE // LIAM : bicolore stricte, plus un gris de respiration. */
+
+$noir: #000000;
+$blanc: #ffffff;
+$gris: #7a7a7a;
+$gris-clair: #d6d6d6;
+
+$pixel: 'Press Start 2P', monospace;   // logo, HUD, actions - l'ossature
+$main: 'Caveat', cursive;              // la voix humaine, les dialogues
+$mono: 'Space Mono', monospace;        // le systeme, les metadonnees
+
+@mixin trait($epaisseur: 3px, $couleur: $noir) {
+  border: $epaisseur solid $couleur;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #060606;
+  color: $blanc;
+  font-family: $mono;
+  overflow: hidden;
+  /* Empeche le « tirer pour rafraichir » et le rebond pendant qu'on joue. */
+  overscroll-behavior: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  &:disabled { cursor: default; }
+}
+
+.app {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+/*
+ * Le cadre 16:9 : tout le jeu vit a l'interieur.
+ *
+ * Ses dimensions sont FIXES (1280x720) et c'est une transformation qui l'adapte
+ * a la fenetre — voir `useEchelle`. Toute l'interface peut donc etre composee
+ * en pixels absolus sans jamais deborder, du telephone en paysage au
+ * videoprojecteur.
+ */
+.cadre {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1280px;
+  height: 720px;
+  transform: translate(-50%, -50%) scale(var(--echelle, 1));
+  overflow: hidden;
+  background: $noir;
+  border: 2px solid #1c1c1c;
+  box-shadow: 0 0 0 1px #000, 0 24px 80px rgba(0, 0, 0, 0.8);
+}
+
+.bouton {
+  padding: 12px 22px;
+  font-family: $pixel;
+  font-size: 11px;
+  color: $noir;
+  background: $blanc;
+  @include trait();
+  transition: transform 0.12s ease;
+
+  &:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 $gris; }
+}

@@ -1,0 +1,13 @@
+node_modules/
+dist/
+
+# Paquets de déploiement : régénérés par `npm run build`
+*.zip
+
+# Outils locaux
+.claude/
+.vscode/
+.idea/
+
+.DS_Store
+Thumbs.db

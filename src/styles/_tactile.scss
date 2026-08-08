@@ -1,0 +1,169 @@
+@use 'base' as *;
+
+/* ------------------------------------------------------------------ */
+/* Commandes tactiles — visibles seulement sur écran tactile           */
+/* ------------------------------------------------------------------ */
+
+.tactile { display: none; }
+
+@media (pointer: coarse) {
+  .tactile {
+    position: absolute;
+    inset: auto 0 0 0;
+    z-index: 6;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 30px 26px;
+    pointer-events: none;
+
+    > * { pointer-events: auto; }
+  }
+}
+
+/*
+ * Dimensions choisies pour l'APRES mise a l'echelle : sur un telephone en
+ * paysage (~844x390), le cadre est reduit d'environ 0,54. Un bouton de 84px
+ * dessine ici arrive donc a ~45px reels, juste au-dessus du minimum tactile
+ * confortable. Des boutons de 62px tombaient a 34px, trop petits.
+ */
+.dpad {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 84px);
+  grid-template-rows: repeat(3, 84px);
+  opacity: 0.82;
+}
+
+.dpad__b {
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  color: $blanc;
+  background: rgba(0, 0, 0, 0.7);
+  @include trait(3px, $blanc);
+  /* Sans ça, un appui maintenu déclenche le défilement ou le zoom du navigateur. */
+  touch-action: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active { color: $noir; background: $blanc; }
+}
+
+.dpad__b--h { grid-area: 1 / 2; }
+.dpad__b--g { grid-area: 2 / 1; }
+.dpad__b--d { grid-area: 2 / 3; }
+.dpad__b--b { grid-area: 3 / 2; }
+
+.dpad__centre {
+  grid-area: 2 / 2;
+  border-top: 3px solid $blanc;
+  border-bottom: 3px solid $blanc;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.tactile__action {
+  width: 140px;
+  height: 140px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  font-family: $pixel;
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: $noir;
+  background: $blanc;
+  @include trait(4px, $noir);
+  box-shadow: 0 0 0 3px $blanc;
+  opacity: 0.9;
+  touch-action: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active { transform: scale(0.94); }
+}
+
+/* ------------------------------------------------------------------ */
+/* Écran de rotation                                                   */
+/* ------------------------------------------------------------------ */
+
+.rotation { display: none; }
+
+@media (pointer: coarse) and (orientation: portrait) {
+  /* On masque le jeu entièrement : il n'est pas composé pour ce format. */
+  .cadre { display: none; }
+
+  .rotation {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    padding: 32px;
+    text-align: center;
+    background: $noir;
+  }
+}
+
+.rotation__telephone {
+  width: 62px;
+  height: 104px;
+  border-radius: 10px;
+  @include trait(4px, $blanc);
+  display: grid;
+  place-items: center;
+  animation: bascule 2.6s ease-in-out infinite;
+}
+
+.rotation__ecran {
+  width: 34px;
+  height: 62px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+@keyframes bascule {
+  0%, 30% { transform: rotate(0deg); }
+  55%, 85% { transform: rotate(-90deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.rotation__titre {
+  margin: 0;
+  font-family: $pixel;
+  font-size: 17px;
+  letter-spacing: 2px;
+  color: $blanc;
+}
+
+.rotation__texte {
+  margin: 0;
+  max-width: 320px;
+  font-family: $main;
+  font-size: 25px;
+  line-height: 1.3;
+  color: $gris-clair;
+}
+
+/* ------------------------------------------------------------------ */
+/* Bouton plein écran — sur mobile la barre d'adresse mange l'écran    */
+/* ------------------------------------------------------------------ */
+
+.plein-ecran { display: none; }
+
+@media (pointer: coarse) {
+  .plein-ecran {
+    display: block;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 7;
+    padding: 10px 14px;
+    font-family: $pixel;
+    font-size: 9px;
+    color: $blanc;
+    background: rgba(0, 0, 0, 0.7);
+    @include trait(2px, $blanc);
+  }
+}

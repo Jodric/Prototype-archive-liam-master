@@ -1,0 +1,266 @@
+@use 'base' as *;
+
+.combat {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  background: $noir;
+  overflow: hidden;
+}
+
+.combat--secousse { animation: secousse 0.4s ease-in-out; }
+@keyframes secousse {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-7px, 3px); }
+  40% { transform: translate(6px, -4px); }
+  60% { transform: translate(-4px, -2px); }
+  80% { transform: translate(3px, 3px); }
+}
+
+/* Le vide se referme quand la Stabilite tombe. */
+.combat__vide {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 50% 38%,
+    rgba(0, 0, 0, 0) 22%,
+    rgba(0, 0, 0, 0.85) 62%,
+    #000 88%
+  );
+  transition: opacity 0.6s ease;
+}
+
+.combat__arene {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 18px 26px 0;
+}
+
+/* -------- l'adversaire -------- */
+
+.anxiete {
+  position: relative;
+  display: grid;
+  place-items: center;
+  transition: transform 0.5s ease;
+  animation: derive 7s ease-in-out infinite;
+}
+@keyframes derive {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -12px; }
+}
+
+.anxiete--touchee { animation: flash 0.36s steps(2) 2; }
+@keyframes flash {
+  0%, 100% { filter: none; }
+  50% { filter: invert(1); }
+}
+
+.anxiete__svg {
+  width: clamp(230px, 32vw, 380px);
+  height: auto;
+  /* Encre noire sur fond noir : on la borde de blanc pour qu'elle existe. */
+  filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 26px rgba(255, 255, 255, 0.35));
+}
+
+.anxiete__nom {
+  margin-top: 6px;
+  font-family: $pixel;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: $blanc;
+}
+
+/* -------- jauges -------- */
+
+.combat__jauges {
+  position: absolute;
+  top: 16px;
+  left: 26px;
+  right: 26px;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 380px;
+}
+
+.jauge {
+  display: grid;
+  grid-template-columns: 96px 1fr 34px;
+  align-items: center;
+  gap: 9px;
+  font-family: $pixel;
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: $blanc;
+}
+
+.jauge__libelle { display: flex; align-items: center; gap: 5px; }
+.jauge__icone { display: flex; }
+
+.jauge__piste {
+  height: 15px;
+  background: $noir;
+  @include trait(2px, $blanc);
+}
+
+.jauge__remplissage {
+  height: 100%;
+  background: $blanc;
+  transition: width 0.5s ease;
+}
+
+.jauge--emprise .jauge__remplissage {
+  background: repeating-linear-gradient(
+    45deg, $blanc 0 5px, $gris 5px 10px
+  );
+}
+
+.jauge__valeur { text-align: right; font-size: 9px; }
+
+.combat__replis {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: $blanc;
+  span { color: $gris; }
+}
+
+/* -------- bas d'ecran -------- */
+
+.combat__bas {
+  position: relative;
+  z-index: 6;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 14px;
+  padding: 14px 22px 18px;
+  background: $noir;
+  border-top: 2px solid $blanc;
+}
+
+.journal {
+  height: 178px;
+  padding-right: 10px;
+  overflow-y: auto;
+  font-family: $main;
+  font-size: 21px;
+  line-height: 1.3;
+
+  &::-webkit-scrollbar { width: 6px; }
+  &::-webkit-scrollbar-thumb { background: $gris; }
+}
+
+.journal__ligne { margin: 0 0 9px; }
+.journal__ligne--systeme { color: $gris; font-family: $mono; font-size: 12px; }
+.journal__ligne--joueur { color: $blanc; }
+.journal__ligne--ennemi {
+  color: $gris-clair;
+  font-style: italic;
+  padding-left: 12px;
+  border-left: 2px solid $gris;
+}
+.journal__ligne--neutre { color: $gris-clair; }
+.journal__ligne--effet,
+.journal__ligne--degats {
+  font-family: $pixel;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: $blanc;
+}
+.journal__ligne--degats { color: $gris; }
+.journal__ligne--piege {
+  font-family: $pixel;
+  font-size: 9px;
+  line-height: 1.7;
+  color: $noir;
+  background: $blanc;
+  padding: 7px 9px;
+}
+
+/* -------- actions -------- */
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 9px;
+  align-content: start;
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px 14px;
+  text-align: left;
+  color: $blanc;
+  background: $noir;
+  @include trait(2px, $blanc);
+  transition: all 0.1s ease;
+
+  &:hover:not(:disabled) { color: $noir; background: $blanc; }
+  &:disabled { opacity: 0.3; }
+}
+
+.action__libelle { font-family: $pixel; font-size: 11px; letter-spacing: 1px; }
+.action__aide { font-family: $mono; font-size: 10px; opacity: 0.72; }
+
+/* « S'Isoler » a l'air rassurant. C'est voulu. */
+.action--isoler {
+  border-style: dashed;
+  .action__libelle { opacity: 0.86; }
+}
+
+.sous-menu {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 178px;
+  overflow-y: auto;
+}
+
+.sous-menu__item {
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  text-align: left;
+  font-family: $mono;
+  font-size: 12px;
+  color: $blanc;
+  background: $noir;
+  @include trait(2px, $blanc);
+
+  &:hover:not(:disabled) { color: $noir; background: $blanc; }
+  &:disabled { opacity: 0.32; }
+
+  em { font-size: 10px; opacity: 0.65; font-style: normal; }
+}
+
+.sous-menu__icone { font-size: 15px; text-align: center; }
+
+.sous-menu__vide {
+  margin: 0;
+  padding: 12px;
+  font-family: $main;
+  font-size: 19px;
+  color: $gris;
+}
+
+.sous-menu__retour {
+  align-self: flex-start;
+  padding: 6px 12px;
+  font-family: $pixel;
+  font-size: 9px;
+  color: $blanc;
+  background: transparent;
+  border: 0;
+  &:hover { text-decoration: underline; }
+}
