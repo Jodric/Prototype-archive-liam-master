@@ -1,10 +1,5 @@
 /**
  * Script narratif de la vertical slice.
- *
- * Les expressions correspondent aux planches fournies :
- *   Liam  1 inquiet · 2 surpris · 3 triste · 4 neutre · 5 hesitant · 6 sourire
- *   Clara 1 exclame · 2 ferme   · 3 tendre · 4 triste · 5 parle   · 6 mal a l'aise
- *   Mere  1 inquiete · 2 neutre · 3 sourire · 4 parle · 5 pensive · 6 genee
  */
 
 export const EMOTIONS = {
